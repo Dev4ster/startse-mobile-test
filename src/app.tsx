@@ -1,12 +1,16 @@
 import React from 'react';
 import { View, Text } from 'react-native';
+import ThemeProviderApp from '~/styles/ThemeProviderApp';
+import Main from './components/Main/Main';
 
 // import { Container } from './styles';
 
 const src: React.FC = () => (
-  <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-    <Text>oi</Text>
-  </View>
+  <ThemeProviderApp>
+    <Main>
+      <Text>oi</Text>
+    </Main>
+  </ThemeProviderApp>
 );
 
 export default src;
