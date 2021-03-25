@@ -1,6 +1,6 @@
 export default {
   border: {
-    radius: '0.4rem',
+    radius: '4px',
   },
   font: {
     sizes: {

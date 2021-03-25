@@ -2,9 +2,13 @@ import React from 'react';
 
 import * as S from './styles';
 
-const Button = () => (
+type ButtonProps = {
+  children: string;
+};
+
+const Button = ({ children }: ButtonProps) => (
   <S.Wrapper>
-    <S.Text>Button</S.Text>
+    <S.Text>{children}</S.Text>
   </S.Wrapper>
 );
 
