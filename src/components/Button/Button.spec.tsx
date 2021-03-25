@@ -23,16 +23,18 @@ describe('<Button />', () => {
 
   it('should be call onPress if clicked', () => {
     const mockFn = jest.fn();
-    mockFn.mockReturnValue('Link on press invoked');
-
+    mockFn.mockReturnValue(true);
     const button = renderWithTheme(
       <Button icon="add" onPress={mockFn}>
         Cadastrar
       </Button>,
     );
 
-    button.getByTestId('button').props.onClick();
+    fireEvent(button.getByTestId('button'), 'onPress', null);
 
-    expect(mockFn.mock.calls.length).toBe(1);
+    // button.getByTestId('button').props.onClick();
+    // button.getByTestId('button').props.onClick();
+    expect(mockFn).toBeCalledTimes(1);
+    // expect(mockFn).toHaveBeenCalledWith(true);
   });
 });
