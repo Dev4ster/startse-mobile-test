@@ -11,7 +11,7 @@ module.exports = function generate(plop) {
     actions: [
       {
         type: 'add',
-        path: '../src/components/{{pascalCase name}}/{{pascalCase name}}.tsx',
+        path: '../src/components/{{pascalCase name}}/{{camelCase name}}.tsx',
         templateFile: 'templates/components/index.tsx.hbs',
       },
       {
@@ -22,7 +22,7 @@ module.exports = function generate(plop) {
       {
         type: 'add',
         path:
-          '../src/components/{{pascalCase name}}/{{pascalCase name}}.spec.tsx',
+          '../src/components/{{pascalCase name}}/{{camelCase name}}.spec.tsx',
         templateFile: 'templates/components/test.tsx.hbs',
       },
     ],
