@@ -1,15 +1,10 @@
 import React from 'react';
-import { Text } from 'react-native';
 import ThemeProviderApp from '~/styles/ThemeProviderApp';
-import Main from './components/Main/Main';
-
-// import { Container } from './styles';
+import Routes from './routes';
 
 const src: React.FC = () => (
   <ThemeProviderApp>
-    <Main>
-      <Text>oi</Text>
-    </Main>
+    <Routes />
   </ThemeProviderApp>
 );
 

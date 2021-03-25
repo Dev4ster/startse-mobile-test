@@ -24,6 +24,9 @@
     ]
   },
   "dependencies": {
+    "@react-native-community/masked-view": "^0.1.10",
+    "@react-navigation/native": "^5.9.3",
+    "@react-navigation/stack": "^5.14.3",
     "@typescript-eslint/eslint-plugin": "^4.19.0",
     "babel-plugin-root-import": "^6.6.0",
     "babel-plugin-styled-components": "^1.12.0",
@@ -34,6 +37,10 @@
     "eslint-plugin-react-hooks": "^4",
     "react": "17.0.1",
     "react-native": "0.64.0",
+    "react-native-gesture-handler": "^1.10.3",
+    "react-native-reanimated": "^2.0.1",
+    "react-native-safe-area-context": "^3.2.0",
+    "react-native-screens": "^2.18.1",
     "styled-components": "^5.2.1"
   },
   "devDependencies": {
@@ -64,7 +71,9 @@
   },
   "jest": {
     "preset": "react-native",
-    "setupFilesAfterEnv": ["<rootDir>/.jest/setup.js"],
+    "setupFilesAfterEnv": [
+      "<rootDir>/.jest/setup.js"
+    ],
     "moduleFileExtensions": [
       "ts",
       "tsx",
