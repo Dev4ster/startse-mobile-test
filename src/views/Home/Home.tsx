@@ -1,4 +1,5 @@
 import React from 'react';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import Button from '~/components/Button/Button';
 import Header from '~/components/Header/Header';
@@ -11,7 +12,7 @@ const Home = () => {
     <S.Container>
       <Header />
       <S.ButtonContainer>
-        <Button>{i18n.t('screen.home.registerProduct')}</Button>
+        <Button icon="add">{i18n.t('screen.home.registerProduct')}</Button>
       </S.ButtonContainer>
     </S.Container>
   );
