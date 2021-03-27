@@ -10,6 +10,8 @@ export type ProductItemProps = {
   price: number;
   category: string;
   tags: string[];
+  handleDelete: () => void;
+  handleUpdate: () => void;
 };
 
 const ProductItem = ({
@@ -19,6 +21,8 @@ const ProductItem = ({
   photoUrl,
   price,
   tags,
+  handleDelete,
+  handleUpdate,
 }: ProductItemProps) => (
   <S.Wrapper>
     <S.Photo source={{ uri: photoUrl }} />
@@ -35,8 +39,8 @@ const ProductItem = ({
           ))}
         </S.TagList>
         <S.ActionsList>
-          <Button icon="delete" />
-          <Button icon="edit" />
+          <Button icon="delete" onPress={handleDelete} />
+          <Button icon="edit" onPress={handleUpdate} />
         </S.ActionsList>
       </S.Footer>
     </S.Details>

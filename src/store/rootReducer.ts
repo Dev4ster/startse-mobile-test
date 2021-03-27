@@ -1,7 +1,9 @@
 import { combineReducers } from 'redux';
 
-import products from './modules/products/reducer';
+import { reducer as product } from './ducks/product';
+import { reducer as category } from './ducks/category';
 
 export default combineReducers({
-  products,
+  product,
+  category,
 });

@@ -1,26 +1,37 @@
 {
-  "products":[
+  "products": [
     {
-      "id":1,
-      "title":"Computador All In One",
-      "price":1000.50,
-      "category":"Computador",
+      "id": 1,
+      "title": "Computador All In One",
+      "price": 1000.5,
+      "category": "Computador",
       "photoUrl": "https://hbr.org/resources/images/article_assets/2019/11/Nov19_14_sb10067951dd-001.jpg",
-      "tags":[
+      "tags": [
         "eletrônicos"
       ]
+    },
+    {
+      "title": "Produto",
+      "category": "Computador",
+      "price": "99.90",
+      "tag": "",
+      "photoUrl": "https://picsum.photos/300/300",
+      "tags": [
+        "Teste"
+      ],
+      "id": 2
     }
   ],
-  "categories":[
+  "categories": [
     {
-      "id":1,
-      "name":"Computador"
+      "id": 1,
+      "name": "Computador"
     }
   ],
-  "tags":[
+  "tags": [
     {
-      "id":1,
-      "name":"eletrônicos"
+      "id": 1,
+      "name": "eletrônicos"
     }
   ]
 }

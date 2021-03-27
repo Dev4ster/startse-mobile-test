@@ -6,7 +6,7 @@ export default reducers => {
     {
       key: 'meuprestador',
       storage: AsyncStorage,
-      whitelist: ['products'],
+      whitelist: ['products', 'categories'],
     },
     reducers,
   );

@@ -7,7 +7,7 @@ export const Wrapper = styled.View.attrs({
   ${({ theme }) => css`
     justify-content: center;
     align-items: center;
-    height: 100px;
+    height: 130px;
     flex-direction: row;
     align-items: center;
     margin: 10px;
