@@ -1,5 +1,6 @@
 module.exports = {
-  presets: ['module:metro-react-native-babel-preset', '@babel/preset-env'],
+  presets: ['module:metro-react-native-babel-preset'],
+  sourceMaps: true,
   plugins: [
     'babel-plugin-styled-components',
     [

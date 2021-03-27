@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { useDispatch } from 'react-redux';
 
 import Button from '~/components/Button/Button';
 import Header from '~/components/Header/Header';
 import ProductList from '~/components/ProductList/ProductList';
 import i18n from '~/i18n';
+import { getAllProducts } from '~/store/modules/products/actions';
 
 import * as S from './styles';
 
@@ -20,6 +22,11 @@ const mock = [
   },
 ];
 const Home = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllProducts());
+  }, []);
   return (
     <S.Container>
       <Header />

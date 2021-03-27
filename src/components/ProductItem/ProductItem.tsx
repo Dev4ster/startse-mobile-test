@@ -6,7 +6,7 @@ import * as S from './styles';
 export type ProductItemProps = {
   id: number;
   photoUrl: string;
-  name: string;
+  title: string;
   price: number;
   category: string;
   tags: string[];
@@ -15,7 +15,7 @@ export type ProductItemProps = {
 const ProductItem = ({
   id,
   category,
-  name,
+  title,
   photoUrl,
   price,
   tags,
@@ -23,7 +23,7 @@ const ProductItem = ({
   <S.Wrapper>
     <S.Photo source={{ uri: photoUrl }} />
     <S.Details>
-      <S.Name>{name}</S.Name>
+      <S.Name>{title}</S.Name>
       <S.Price>{price}</S.Price>
       <S.Category>{category}</S.Category>
       <S.Footer>
