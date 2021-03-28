@@ -2,10 +2,12 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Formik } from 'formik';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
 import RNPickerSelect from 'react-native-picker-select';
 
 import { useNavigation } from '@react-navigation/core';
+import { useTheme } from 'styled-components';
 import { actions as productActions, IProduct } from '~/store/ducks/product';
 import {
   actions as categoriesActions,
@@ -21,6 +23,8 @@ import { FormProps, FormValues } from '~/@types/RegisterRouteDTO';
 const Form = ({ formData, update }: FormProps) => {
   const dispatch = useDispatch();
   const [tags, setTags] = useState<string[]>([]);
+
+  const theme = useTheme();
   const navigation = useNavigation();
   const categoriesState = useSelector<{
     category: CategoryState;
@@ -55,8 +59,31 @@ const Form = ({ formData, update }: FormProps) => {
     return [];
   }, [categoriesState.categories]);
 
+  const handleGoBack = () => {
+    if (navigation.canGoBack()) {
+      navigation.goBack();
+    } else {
+      navigation.navigate('Home');
+    }
+  };
+
   const handlerSubmit = (values: FormValues) => {
     if (update) {
+      if (formData?.id) {
+        dispatch(
+          productActions.updateProductRequest({
+            productId: formData.id,
+            data: {
+              ...values,
+              price: Number(values.price),
+              photoUrl: 'https://picsum.photos/300/300',
+              tags,
+            },
+
+            onSuccess: handleGoBack,
+          }),
+        );
+      }
     } else {
       dispatch(
         productActions.submitProductRequest({
@@ -98,14 +125,6 @@ const Form = ({ formData, update }: FormProps) => {
     );
   };
 
-  const handleGoBack = () => {
-    if (navigation.canGoBack()) {
-      navigation.goBack();
-    } else {
-      navigation.navigate('Home');
-    }
-  };
-
   const handleRemoveTag = (tag: string) => {
     Alert.alert(
       'Atenção',
@@ -144,90 +163,126 @@ const Form = ({ formData, update }: FormProps) => {
       onSubmit={handlerSubmit}
     >
       {({ handleChange, handleSubmit, values, errors, handleReset }) => (
-        <S.InputContainer>
-          <S.InputRow>
-            <S.InputLabel>Titulo</S.InputLabel>
-            <S.Input
-              placeholder="Nome do produto"
-              onChangeText={handleChange('title')}
-              value={values.title}
-            />
-            {errors.title && <S.ErrorLabel>{errors.title}</S.ErrorLabel>}
-          </S.InputRow>
-          <S.InputRow>
-            <S.InputLabel>Categoria</S.InputLabel>
-            <RNPickerSelect
-              items={mapperRNPicker}
-              value={values.category}
-              style={{
-                viewContainer: {
-                  borderWidth: 1,
-                  borderColor: '#EEE',
-                  borderRadius: 4,
-                  padding: 10,
-                },
-              }}
-              placeholder={{
-                label: 'Selecione a categoria',
-              }}
-              onValueChange={value => {
-                if (value) {
-                  handleChange('category')(value);
-                } else {
-                  handleChange('category')('');
-                }
-              }}
-            />
-            {errors.category && <S.ErrorLabel>{errors.category}</S.ErrorLabel>}
-          </S.InputRow>
-          <S.InputRow>
-            <S.InputLabel>Valor</S.InputLabel>
-            <S.Input
-              placeholder="R$ 99,99"
-              onChangeText={handleChange('price')}
-              value={String(values.price)}
-            />
-            {errors.price && <S.ErrorLabel>{errors.price}</S.ErrorLabel>}
-          </S.InputRow>
-          <S.InputRow>
-            <S.InputLabel>Tags</S.InputLabel>
-            <S.Input
-              placeholder="Escreva uma tag"
-              onChangeText={handleChange('tag')}
-              value={values.tag}
-              returnKeyType="send"
-              onSubmitEditing={() => {
-                if (handleAddTag(values.tag)) {
-                  handleChange('tag')('');
-                }
-              }}
-            />
-            <S.InputLabel
-              style={{ fontSize: 10, marginTop: 10, marginBottom: 5 }}
-            >
-              Tags selecionadas:
-            </S.InputLabel>
-            <S.TagsRow>
-              {tags.map(tag => (
-                <S.Tag key={tag} onPress={() => handleRemoveTag(tag)}>
-                  <S.TagText>{tag}</S.TagText>
-                  <Icon name="close" size={10} style={{ marginLeft: 'auto' }} />
-                </S.Tag>
-              ))}
-            </S.TagsRow>
-          </S.InputRow>
+        <>
+          <S.InputContainer>
+            <S.InputRow>
+              <S.InputLabel>Titulo</S.InputLabel>
+              <S.Input
+                placeholder="Nome do produto"
+                onChangeText={handleChange('title')}
+                value={values.title}
+              />
+              {errors.title && <S.ErrorLabel>{errors.title}</S.ErrorLabel>}
+            </S.InputRow>
+            <S.InputRow>
+              <S.InputLabel>Categoria</S.InputLabel>
+              <RNPickerSelect
+                items={mapperRNPicker}
+                value={values.category}
+                style={{
+                  viewContainer: {
+                    borderWidth: 1,
+                    borderColor: theme.colors.primary,
+                    borderRadius: 4,
+                    padding: 10,
+                  },
+                }}
+                placeholder={{
+                  label: 'Selecione a categoria',
+                }}
+                onValueChange={value => {
+                  if (value) {
+                    handleChange('category')(value);
+                  } else {
+                    handleChange('category')('');
+                  }
+                }}
+              />
+              {errors.category && (
+                <S.ErrorLabel>{errors.category}</S.ErrorLabel>
+              )}
+            </S.InputRow>
+            <S.InputRow>
+              <S.InputLabel>Valor</S.InputLabel>
+              <S.Input
+                placeholder="R$ 99,99"
+                onChangeText={handleChange('price')}
+                value={String(values.price)}
+              />
+              {errors.price && <S.ErrorLabel>{errors.price}</S.ErrorLabel>}
+            </S.InputRow>
+            <S.InputRow>
+              <S.InputLabel>Tags</S.InputLabel>
+              <S.Input
+                placeholder="Escreva uma tag"
+                onChangeText={handleChange('tag')}
+                value={values.tag}
+                returnKeyType="send"
+                onSubmitEditing={() => {
+                  if (handleAddTag(values.tag)) {
+                    handleChange('tag')('');
+                  }
+                }}
+              />
+              {!!tags.length && (
+                <S.InputLabel
+                  style={{ fontSize: 10, marginTop: 10, marginBottom: 5 }}
+                >
+                  Tags selecionadas:
+                </S.InputLabel>
+              )}
+              <S.TagsRow>
+                {tags.map(tag => (
+                  <S.Tag key={tag} onPress={() => handleRemoveTag(tag)}>
+                    <S.TagText>{tag}</S.TagText>
+                    <Icon
+                      name="close"
+                      size={10}
+                      style={{ marginLeft: 'auto' }}
+                    />
+                  </S.Tag>
+                ))}
+              </S.TagsRow>
+            </S.InputRow>
+          </S.InputContainer>
           <S.ButtonsRow>
-            <Button icon="chevron-left" onPress={handleGoBack}>
-              Voltar
-            </Button>
-            <Button icon="clear" onPress={handleReset}>
-              Resetar
-            </Button>
-            <Button icon="send" onPress={handleSubmit}>
-              Enviar
-            </Button>
+            <SafeAreaView style={{ flexDirection: 'row' }} edges={['bottom']}>
+              <Button
+                icon="chevron-left"
+                onPress={handleGoBack}
+                iconSize={20}
+                labelStyle={{
+                  fontSize: 18,
+                  fontWeight: 'bold',
+                }}
+              >
+                Voltar
+              </Button>
+              <Button
+                icon="clear"
+                onPress={handleReset}
+                iconSize={20}
+                labelStyle={{
+                  fontSize: 18,
+                  fontWeight: 'bold',
+                }}
+              >
+                Resetar
+              </Button>
+              <Button
+                icon="send"
+                onPress={handleSubmit}
+                iconSize={20}
+                labelStyle={{
+                  fontSize: 18,
+                  fontWeight: 'bold',
+                }}
+              >
+                {update ? 'Atualizar' : 'Enviar'}
+              </Button>
+            </SafeAreaView>
           </S.ButtonsRow>
-        </S.InputContainer>
+        </>
       )}
     </Formik>
   );

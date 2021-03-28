@@ -29,7 +29,7 @@ const Home = () => {
         <ProductList />
       </S.ProductContainer>
       <S.ButtonContainer>
-        <SafeAreaView edges={['bottom']}>
+        <SafeAreaView edges={['bottom']} style={{ flex: 1 }}>
           <Button
             icon="add"
             fullWidth

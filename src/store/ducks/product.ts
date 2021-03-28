@@ -64,6 +64,20 @@ export interface SubmitProductFailurePayload {
   error: string;
 }
 
+export interface UpdateProductRequestPayload {
+  data: Partial<IProduct>;
+  productId: number;
+  onSuccess?: () => void;
+}
+
+export interface UpdateProductSuccessPayload {
+  product: IProduct;
+}
+
+export interface UpdateProductFailurePayload {
+  error: string;
+}
+
 export interface DeleteProductRequest extends Action {
   type: typeof DELETE_PRODUCT_REQUEST;
   payload: DeleteProductRequestPayload;
@@ -108,6 +122,21 @@ export interface SubmitProductFailure extends Action {
   payload: SubmitProductFailurePayload;
 }
 
+export interface UpdateProductRequest extends Action {
+  type: typeof UPDATE_PRODUCT_REQUEST;
+  payload: UpdateProductRequestPayload;
+}
+
+export interface UpdateProductSuccess extends Action {
+  type: typeof UPDATE_PRODUCT_SUCCESS;
+  payload: UpdateProductSuccessPayload;
+}
+
+export interface UpdateProductFailure extends Action {
+  type: typeof UPDATE_PRODUCT_FAILURE;
+  payload: UpdateProductFailurePayload;
+}
+
 export type ProductsActions =
   | FetchProductsRequest
   | FetchProductsSuccess
@@ -117,7 +146,10 @@ export type ProductsActions =
   | DeleteProductFailure
   | SubmitProductRequest
   | SubmitProductSuccess
-  | SubmitProductFailure;
+  | SubmitProductFailure
+  | UpdateProductRequest
+  | UpdateProductSuccess
+  | UpdateProductFailure;
 
 const INITIAL_STATE = {
   error: null,
@@ -162,6 +194,24 @@ export const reducer = (state = INITIAL_STATE, action: ProductsActions) =>
       case SUBMIT_PRODUCT_SUCCESS:
         draft.loading = false;
         draft.products?.push(action.payload.product);
+        return draft;
+      case UPDATE_PRODUCT_REQUEST:
+        draft.loading = true;
+        return draft;
+      case UPDATE_PRODUCT_SUCCESS:
+        draft.loading = false;
+        draft.products = draft.products?.map(product => {
+          if (product.id === action.payload.product.id) {
+            return {
+              ...action.payload.product,
+            };
+          }
+          return product;
+        });
+        return draft;
+      case UPDATE_PRODUCT_FAILURE:
+        draft.loading = false;
+        draft.error = action.payload.error;
         return draft;
       default:
         return draft;
@@ -234,6 +284,27 @@ function submitProductFailure(data: SubmitProductFailurePayload) {
   };
 }
 
+function updateProductRequest(data: UpdateProductRequestPayload) {
+  return {
+    type: UPDATE_PRODUCT_REQUEST,
+    payload: data,
+  };
+}
+
+function updateProductSuccess(data: UpdateProductSuccessPayload) {
+  return {
+    type: UPDATE_PRODUCT_SUCCESS,
+    payload: data,
+  };
+}
+
+function updateProductFailure(data: UpdateProductFailurePayload) {
+  return {
+    type: UPDATE_PRODUCT_FAILURE,
+    payload: data,
+  };
+}
+
 const actions = {
   fetchProductsRequest,
   fetchProductsFailure,
@@ -244,6 +315,9 @@ const actions = {
   submitProductRequest,
   submitProductSuccess,
   submitProductFailure,
+  updateProductRequest,
+  updateProductSuccess,
+  updateProductFailure,
 };
 
 const types = {

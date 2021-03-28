@@ -20,11 +20,11 @@ const ButtonModifiers = {
 export const Wrapper = styled.TouchableOpacity<ButtonProps>`
   ${({ theme, fullWidth }) => css`
     background-color: ${theme.colors.primary};
-    align-self: flex-start;
     padding: 5px;
     border-radius: ${theme.border.radius};
     flex-direction: row;
     align-items: center;
+    flex: 1;
     ${!!fullWidth && ButtonModifiers.fullWidth};
   `}
 `;

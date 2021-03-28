@@ -37,6 +37,8 @@ const ProductList = () => {
       return (
         <FlatList
           data={productState.products}
+          refreshing={productState.loading}
+          onRefresh={() => dispatch(actions.fetchProductsRequest())}
           keyExtractor={item => String(item.id)}
           renderItem={({ item }) => (
             <ProductItem

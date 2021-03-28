@@ -6,6 +6,7 @@ import {
   types,
   DeleteProductRequest,
   SubmitProductRequest,
+  UpdateProductRequest,
 } from '~/store/ducks/product';
 import SnackBar from '~/utils/useSnackBar';
 
@@ -14,6 +15,37 @@ const createProduct = (data: Omit<IProduct, 'id'>) =>
   api.post<IProduct>('/products', data);
 const deleteProduct = (productId: number) =>
   api.delete(`/products/${productId}`);
+
+const updateProduct = (productId: number, data: Partial<IProduct>) =>
+  api.put(`/products/${productId}`, data);
+
+function* updateProductRequest(action: UpdateProductRequest) {
+  try {
+    const response = yield* call(
+      updateProduct,
+      action.payload.productId,
+      action.payload.data,
+    );
+    yield put(
+      actions.updateProductSuccess({
+        product: response.data,
+      }),
+    );
+    if (action.payload?.onSuccess) {
+      action.payload?.onSuccess();
+    }
+  } catch (e) {
+    SnackBar({
+      text: 'Erro com nossos servidores',
+      type: 'error',
+    });
+    yield put(
+      actions.updateProductFailure({
+        error: e.message,
+      }),
+    );
+  }
+}
 
 function* createProductRequest(action: SubmitProductRequest) {
   try {
@@ -83,4 +115,5 @@ export default all([
   takeLatest(types.FETCH_PRODUCTS_REQUEST, fetchProducts),
   takeLatest(types.DELETE_PRODUCT_REQUEST, deleteProductRequest),
   takeLatest(types.SUBMIT_PRODUCT_REQUEST, createProductRequest),
+  takeLatest(types.UPDATE_PRODUCT_REQUEST, updateProductRequest),
 ]);

@@ -7,7 +7,7 @@ export type FormValues = {
 
 export type FormProps = {
   update?: boolean;
-  formData?: Omit<FormValues, 'tag'> & { tags: string[] };
+  formData?: Omit<FormValues, 'tag'> & { tags: string[]; id: number };
 };
 
 export type RegisterRouterProps = {

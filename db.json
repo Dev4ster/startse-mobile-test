@@ -1,14 +1,16 @@
 {
   "products": [
     {
-      "id": 1,
-      "title": "Computador All In One",
-      "price": 1000.5,
+      "title": "Computador All",
       "category": "Computador",
-      "photoUrl": "https://hbr.org/resources/images/article_assets/2019/11/Nov19_14_sb10067951dd-001.jpg",
+      "price": 700.5,
+      "tag": "",
+      "photoUrl": "https://picsum.photos/300/300",
       "tags": [
-        "eletrônicos"
-      ]
+        "eletrônicos",
+        "Jogos"
+      ],
+      "id": 1
     },
     {
       "title": "Produto",

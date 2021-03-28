@@ -9,7 +9,7 @@ export const FormContainer = styled.View`
   flex: 1;
 `;
 
-export const InputContainer = styled.View`
+export const InputContainer = styled.ScrollView`
   margin: 10px;
 `;
 
@@ -60,9 +60,11 @@ export const Selector = styled(RNPickerSelect)`
 `;
 
 export const ButtonsRow = styled.View`
+  padding-top: 20px;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
+  background-color: ${({ theme }) => theme.colors.primary};
 `;
 
 export const ErrorLabel = styled.Text`

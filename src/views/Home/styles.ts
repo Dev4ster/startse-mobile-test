@@ -12,5 +12,7 @@ export const ButtonContainer = styled.View`
   ${({ theme }) => css`
     background-color: ${theme.colors.primary};
     padding-top: 20px;
+    width: 100%;
+    height: 100px;
   `}
 `;
