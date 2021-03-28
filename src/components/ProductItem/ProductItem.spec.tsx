@@ -1,6 +1,6 @@
 import React from 'react';
-
 import { fireEvent } from '@testing-library/react-native';
+
 import ProductItem, { ProductItemProps } from './ProductItem';
 import { renderWithTheme } from '~/utils/test/helpers';
 

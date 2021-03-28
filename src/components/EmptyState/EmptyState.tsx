@@ -1,4 +1,5 @@
 import React from 'react';
+import i18n from '~/i18n';
 import Button from '../Button/Button';
 
 import * as S from './styles';
@@ -16,7 +17,7 @@ const EmptyState = ({ title, message, retry }: EmptyStateProps) => {
       {!!retry && (
         <S.ButtonContainer>
           <Button onPress={retry} icon="refresh">
-            Tentar novamente
+            {i18n.t('default.emptyState.retry')}
           </Button>
         </S.ButtonContainer>
       )}

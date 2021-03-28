@@ -1,7 +1,7 @@
 import Snackbar from 'react-native-snackbar';
 
 export type SnackBarProps = {
-  text?: string;
+  text: string;
   type?: 'success' | 'error' | 'info' | 'default';
   duration?: number;
 };

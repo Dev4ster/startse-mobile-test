@@ -2,10 +2,11 @@ import { useNavigation } from '@react-navigation/core';
 import React, { useCallback } from 'react';
 import { FlatList } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import { ProductState, actions, IProduct } from '~/store/ducks/product';
-import EmptyState from '../EmptyState/EmptyState';
 
-import ProductItem from '../ProductItem/ProductItem';
+import i18n from '~/i18n';
+import { ProductState, actions, IProduct } from '~/store/ducks/product';
+import EmptyState from '~/components/EmptyState/EmptyState';
+import ProductItem from '~/components/ProductItem/ProductItem';
 import ProductListSkeleton from './ProductListSkeleton';
 
 const ProductList = () => {
@@ -62,8 +63,8 @@ const ProductList = () => {
     if (productState.error) {
       return (
         <EmptyState
-          title="Erro"
-          message="não foi possível atender sua solicitação tente novamente."
+          title={i18n.t('screen.home.list.emptyState.title')}
+          message={i18n.t('screen.home.list.emptyState.message')}
           retry={() => dispatch(actions.fetchProductsRequest())}
         />
       );

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Button from '../Button/Button';
+import Button from '~/components/Button/Button';
 import Logo from '~/assets/image/logo.svg';
 import * as S from './styles';
 

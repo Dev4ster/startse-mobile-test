@@ -13,12 +13,12 @@ import {
   actions as categoriesActions,
   CategoryState,
 } from '~/store/ducks/category';
-
 import { CreateProductSchema } from './validate';
-import * as S from './styles';
 import SnackBar from '~/utils/useSnackBar';
 import Button from '~/components/Button/Button';
 import { FormProps, FormValues } from '~/@types/RegisterRouteDTO';
+import * as S from './styles';
+import i18n from '~/i18n';
 
 const Form = ({ formData, update }: FormProps) => {
   const dispatch = useDispatch();
@@ -103,14 +103,14 @@ const Form = ({ formData, update }: FormProps) => {
 
     if (tagExist) {
       SnackBar({
-        text: 'Tag já existe',
+        text: i18n.t('screen.register.errors.onTagExists'),
         type: 'error',
       });
       return false;
     }
     if (!tag) {
       SnackBar({
-        text: 'Informe um valor para a tag',
+        text: i18n.t('screen.register.errors.onTagNull'),
         type: 'error',
       });
       return false;
@@ -127,17 +127,17 @@ const Form = ({ formData, update }: FormProps) => {
 
   const handleRemoveTag = (tag: string) => {
     Alert.alert(
-      'Atenção',
-      `
-    Tem certeza que deseja excluir a tag: ${tag} ?
-    `,
+      i18n.t('screen.register.alerts.onDeleteTag.title'),
+      i18n.t('screen.register.alerts.onDeleteTag.message', {
+        tag,
+      }),
       [
         {
-          text: 'cancelar',
+          text: i18n.t('screen.register.alerts.onDeleteTag.actions.cancel'),
           style: 'cancel',
         },
         {
-          text: 'remover',
+          text: i18n.t('screen.register.alerts.onDeleteTag.actions.delete'),
           style: 'destructive',
           onPress: () => handleRemoveTagFromArray(tag),
         },
@@ -170,16 +170,20 @@ const Form = ({ formData, update }: FormProps) => {
         >
           <S.InputContainer>
             <S.InputRow>
-              <S.InputLabel>Titulo</S.InputLabel>
+              <S.InputLabel>
+                {i18n.t('screen.register.inputs.title.label')}
+              </S.InputLabel>
               <S.Input
-                placeholder="Nome do produto"
+                placeholder={i18n.t('screen.register.inputs.title.placeholder')}
                 onChangeText={handleChange('title')}
                 value={values.title}
               />
               {errors.title && <S.ErrorLabel>{errors.title}</S.ErrorLabel>}
             </S.InputRow>
             <S.InputRow>
-              <S.InputLabel>Categoria</S.InputLabel>
+              <S.InputLabel>
+                {i18n.t('screen.register.inputs.category.label')}
+              </S.InputLabel>
               <RNPickerSelect
                 items={mapperRNPicker}
                 value={values.category}
@@ -192,8 +196,9 @@ const Form = ({ formData, update }: FormProps) => {
                   },
                 }}
                 placeholder={{
-                  label: 'Selecione a categoria',
+                  label: i18n.t('screen.register.inputs.category.placeholder'),
                 }}
+                doneText={i18n.t('screen.register.inputs.category.doneText')}
                 onValueChange={value => {
                   if (value) {
                     handleChange('category')(value);
@@ -207,18 +212,22 @@ const Form = ({ formData, update }: FormProps) => {
               )}
             </S.InputRow>
             <S.InputRow>
-              <S.InputLabel>Valor</S.InputLabel>
+              <S.InputLabel>
+                {i18n.t('screen.register.inputs.price.label')}
+              </S.InputLabel>
               <S.Input
-                placeholder="R$ 99,99"
+                placeholder={i18n.t('screen.register.inputs.price.placeholder')}
                 onChangeText={handleChange('price')}
                 value={String(values.price)}
               />
               {errors.price && <S.ErrorLabel>{errors.price}</S.ErrorLabel>}
             </S.InputRow>
             <S.InputRow>
-              <S.InputLabel>Tags</S.InputLabel>
+              <S.InputLabel>
+                {i18n.t('screen.register.inputs.tags.label')}
+              </S.InputLabel>
               <S.Input
-                placeholder="Escreva uma tag"
+                placeholder={i18n.t('screen.register.inputs.tags.placeholder')}
                 onChangeText={handleChange('tag')}
                 value={values.tag}
                 returnKeyType="send"
@@ -232,7 +241,9 @@ const Form = ({ formData, update }: FormProps) => {
                 <S.InputLabel
                   style={{ fontSize: 10, marginTop: 10, marginBottom: 5 }}
                 >
-                  Tags selecionadas:
+                  {i18n.t('screen.register.inputs.tags.selectedTags', {
+                    count: tags.length,
+                  })}
                 </S.InputLabel>
               )}
               <S.TagsRow>
@@ -260,7 +271,7 @@ const Form = ({ formData, update }: FormProps) => {
                   fontWeight: 'bold',
                 }}
               >
-                Voltar
+                {i18n.t('screen.register.actions.goBack.buttonText')}
               </Button>
               <Button
                 icon="clear"
@@ -271,7 +282,7 @@ const Form = ({ formData, update }: FormProps) => {
                   fontWeight: 'bold',
                 }}
               >
-                Resetar
+                {i18n.t('screen.register.actions.reset.buttonText')}
               </Button>
               <Button
                 icon="send"
@@ -282,7 +293,9 @@ const Form = ({ formData, update }: FormProps) => {
                   fontWeight: 'bold',
                 }}
               >
-                {update ? 'Atualizar' : 'Enviar'}
+                {update
+                  ? i18n.t('screen.register.actions.update.buttonText')
+                  : i18n.t('screen.register.actions.send.buttonText')}
               </Button>
             </SafeAreaView>
           </S.ButtonsRow>

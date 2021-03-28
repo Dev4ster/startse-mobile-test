@@ -1,20 +1,12 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
 import { RouteProp, useRoute } from '@react-navigation/core';
-import Header from '~/components/Header/Header';
 
-import * as S from './styles';
+import Header from '~/components/Header/Header';
 import Form from './Form';
 import { RegisterRouterProps } from '~/@types/RegisterRouteDTO';
-
-type ParamList = {
-  Detail: {
-    incident: string;
-  };
-};
+import * as S from './styles';
 
 const Register = () => {
-  const dispatch = useDispatch();
   const route = useRoute<RouteProp<RegisterRouterProps, 'params'>>();
   const { params } = route;
   const sendParameters = {};
