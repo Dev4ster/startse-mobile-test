@@ -7,7 +7,7 @@ export type MainProps = {
 };
 
 const Main = ({ children }: MainProps) => {
-  return <S.Container>{children}</S.Container>;
+  return <S.Container testID="main">{children}</S.Container>;
 };
 
 export default Main;
