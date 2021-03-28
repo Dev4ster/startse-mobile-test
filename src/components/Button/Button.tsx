@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleProp, TextStyle } from 'react-native';
+import { StyleProp, TextStyle, ViewStyle } from 'react-native';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import * as S from './styles';
 
@@ -11,6 +11,7 @@ type ButtonProps = {
   theme?: 'dark' | 'white';
   iconSize?: number;
   labelStyle?: StyleProp<TextStyle>;
+  buttonStyle?: StyleProp<ViewStyle>;
 };
 
 const Button = ({
@@ -21,6 +22,7 @@ const Button = ({
   theme = 'white',
   iconSize = 12,
   labelStyle,
+  buttonStyle,
 }: ButtonProps) => (
   <S.Wrapper
     onPress={onPress}
@@ -32,6 +34,7 @@ const Button = ({
       right: 10,
       top: 10,
     }}
+    style={buttonStyle}
   >
     {!!icon && (
       <MaterialIcon

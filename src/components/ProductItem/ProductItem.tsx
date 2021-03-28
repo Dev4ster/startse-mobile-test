@@ -47,7 +47,11 @@ const ProductItem = ({
             ))}
           </S.TagList>
           <S.ActionsList>
-            <Button icon="delete" onPress={handleDelete} />
+            <Button
+              icon="delete"
+              onPress={handleDelete}
+              buttonStyle={{ marginRight: 5 }}
+            />
             <Button icon="edit" onPress={handleUpdate} />
           </S.ActionsList>
         </S.Footer>
