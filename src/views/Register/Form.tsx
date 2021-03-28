@@ -145,6 +145,10 @@ const Form = ({ formData, update }: FormProps) => {
     );
   };
 
+  const handleCleanForm = () => {
+    setTags([]);
+  };
+
   useEffect(() => {
     dispatch(categoriesActions.fetchCategoriesRequest());
   }, [dispatch]);
@@ -161,8 +165,17 @@ const Form = ({ formData, update }: FormProps) => {
       validateOnChange={false}
       initialValues={generateInitialValues}
       onSubmit={handlerSubmit}
+      onReset={handleCleanForm}
     >
-      {({ handleChange, handleSubmit, values, errors, handleReset }) => (
+      {({
+        handleChange,
+        handleSubmit,
+        values,
+        errors,
+        handleReset,
+        resetForm,
+        setValues,
+      }) => (
         <KeyboardAvoidingView
           style={{ flex: 1 }}
           keyboardVerticalOffset={90}
@@ -275,7 +288,17 @@ const Form = ({ formData, update }: FormProps) => {
               </Button>
               <Button
                 icon="clear"
-                onPress={handleReset}
+                onPress={() => {
+                  handleReset();
+                  if (update) {
+                    setValues({
+                      category: '',
+                      price: 0,
+                      tag: '',
+                      title: '',
+                    });
+                  }
+                }}
                 iconSize={20}
                 labelStyle={{
                   fontSize: 18,
