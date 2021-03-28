@@ -17,20 +17,26 @@ const ProductList = () => {
 
   const dispatch = useDispatch();
 
-  const handleDelete = (productId: number) => {
-    dispatch(
-      actions.deleteProductRequest({
-        productId,
-      }),
-    );
-  };
+  const handleDelete = useCallback(
+    (productId: number) => {
+      dispatch(
+        actions.deleteProductRequest({
+          productId,
+        }),
+      );
+    },
+    [dispatch],
+  );
 
-  const handleUpdate = (product: IProduct) => {
-    navigation.navigate('Register', {
-      update: true,
-      formData: product,
-    });
-  };
+  const handleUpdate = useCallback(
+    (product: IProduct) => {
+      navigation.navigate('Register', {
+        update: true,
+        formData: product,
+      });
+    },
+    [navigation],
+  );
 
   const renderList = useCallback(() => {
     if (productState.products?.length) {
