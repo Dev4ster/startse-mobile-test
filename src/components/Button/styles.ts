@@ -2,14 +2,18 @@ import styled, { css, DefaultTheme } from 'styled-components/native';
 
 type ButtonProps = {
   fullWidth?: boolean;
+  color?: 'dark' | 'white';
+  fontScaleIcon?: number;
 };
 
 const ButtonModifiers = {
   fullWidth: css`
     width: 100%;
+    justify-content: center;
   `,
   fullWidthText: (theme: DefaultTheme) => css`
     font-size: ${theme.font.sizes.xlarge};
+    font-weight: bold;
   `,
 };
 
@@ -17,7 +21,7 @@ export const Wrapper = styled.TouchableOpacity<ButtonProps>`
   ${({ theme, fullWidth }) => css`
     background-color: ${theme.colors.primary};
     align-self: flex-start;
-    padding: 10px;
+    padding: 5px;
     border-radius: ${theme.border.radius};
     flex-direction: row;
     align-items: center;
@@ -26,9 +30,9 @@ export const Wrapper = styled.TouchableOpacity<ButtonProps>`
 `;
 
 export const Text = styled.Text<ButtonProps>`
-  ${({ theme, fullWidth }) => css`
+  ${({ theme, fullWidth, color }) => css`
     margin-left: 5px;
-    ${!!fullWidth && ButtonModifiers.fullWidth};
     ${!!fullWidth && ButtonModifiers.fullWidthText(theme)};
+    color: ${theme.colors[color!]};
   `}
 `;

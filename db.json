@@ -13,13 +13,36 @@
     {
       "title": "Produto",
       "category": "Computador",
-      "price": "99.90",
+      "price": 99.9,
       "tag": "",
       "photoUrl": "https://picsum.photos/300/300",
       "tags": [
         "Teste"
       ],
       "id": 2
+    },
+    {
+      "title": "Teste 3",
+      "category": "Computador",
+      "price": "13.90",
+      "tag": "",
+      "photoUrl": "https://picsum.photos/300/300",
+      "tags": [
+        "Teste"
+      ],
+      "id": 4
+    },
+    {
+      "title": "Teste",
+      "category": "Computador",
+      "price": 99.9,
+      "tag": "",
+      "photoUrl": "https://picsum.photos/300/300",
+      "tags": [
+        "Teste",
+        "Tese"
+      ],
+      "id": 5
     }
   ],
   "categories": [

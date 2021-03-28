@@ -62,6 +62,7 @@ const Form = ({ formData, update }: FormProps) => {
         productActions.submitProductRequest({
           data: {
             ...values,
+            price: Number(values.price),
             photoUrl: 'https://picsum.photos/300/300',
             tags,
           },

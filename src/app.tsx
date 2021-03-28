@@ -1,4 +1,5 @@
 import React from 'react';
+import { StatusBar } from 'react-native';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import '~/config/reactotron';
@@ -10,6 +11,7 @@ const src: React.FC = () => (
   <ThemeProviderApp>
     <PersistGate persistor={persistor}>
       <Provider store={store}>
+        <StatusBar barStyle="light-content" />
         <Routes />
       </Provider>
     </PersistGate>

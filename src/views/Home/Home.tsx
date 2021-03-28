@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/core';
 import React, { useEffect } from 'react';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 import { useDispatch } from 'react-redux';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import Button from '~/components/Button/Button';
 import Header from '~/components/Header/Header';
@@ -25,12 +25,21 @@ const Home = () => {
   return (
     <S.Container>
       <Header />
+      <S.ProductContainer>
+        <ProductList />
+      </S.ProductContainer>
       <S.ButtonContainer>
-        <Button icon="add" fullWidth onPress={handleOpenRegisterPage}>
-          {i18n.t('screen.home.registerProduct')}
-        </Button>
+        <SafeAreaView edges={['bottom']}>
+          <Button
+            icon="add"
+            fullWidth
+            onPress={handleOpenRegisterPage}
+            iconSize={25}
+          >
+            {i18n.t('screen.home.registerProduct')}
+          </Button>
+        </SafeAreaView>
       </S.ButtonContainer>
-      <ProductList />
     </S.Container>
   );
 };
