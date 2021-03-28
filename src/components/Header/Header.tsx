@@ -22,6 +22,7 @@ const Header = () => {
   useEffect(() => {
     onRenderAnimation().start();
   }, [onRenderAnimation]);
+
   return (
     <S.Wrapper>
       <Animated.View

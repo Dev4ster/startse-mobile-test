@@ -111,6 +111,9 @@
       "<rootDir>/.jest/setup.js",
       "@testing-library/jest-native/extend-expect"
     ],
+    "moduleNameMapper": {
+      "\\.svg": "<rootDir>/__mocks__/svgMock.js"
+    },
     "moduleFileExtensions": [
       "ts",
       "tsx",
