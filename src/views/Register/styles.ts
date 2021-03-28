@@ -35,6 +35,7 @@ export const InputLabel = styled.Text`
 
 export const TagsRow = styled.View`
   margin-top: 5px;
+  flex-direction: row;
 `;
 
 export const Tag = styled.TouchableOpacity`
@@ -44,12 +45,14 @@ export const Tag = styled.TouchableOpacity`
     padding: 5px 10px;
     border-radius: 15px;
     flex-direction: row;
+    margin-right: 5px;
   `}
 `;
 
 export const TagText = styled.Text`
   ${({ theme }) => css`
     font-size: ${theme.font.sizes.xsmall};
+    color: ${theme.colors.white};
   `}
 `;
 

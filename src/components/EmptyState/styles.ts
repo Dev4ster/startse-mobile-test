@@ -14,6 +14,7 @@ export const Title = styled.Text`
 
 export const ButtonContainer = styled.View`
   margin: 10px 0px;
+  height: 30px;
 `;
 
 export const Message = styled.Text``;

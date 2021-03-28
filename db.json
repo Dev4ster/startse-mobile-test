@@ -24,17 +24,6 @@
       "id": 2
     },
     {
-      "title": "Teste 3",
-      "category": "Computador",
-      "price": "13.90",
-      "tag": "",
-      "photoUrl": "https://picsum.photos/300/300",
-      "tags": [
-        "Teste"
-      ],
-      "id": 4
-    },
-    {
       "title": "Teste",
       "category": "Computador",
       "price": 99.9,

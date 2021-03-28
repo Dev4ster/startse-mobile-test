@@ -13,7 +13,7 @@ const EmptyState = ({ title, message, retry }: EmptyStateProps) => {
     <S.Container>
       <S.Title>{title}</S.Title>
       {!!message && <S.Message>{message}</S.Message>}
-      {retry && (
+      {!!retry && (
         <S.ButtonContainer>
           <Button onPress={retry} icon="refresh">
             Tentar novamente

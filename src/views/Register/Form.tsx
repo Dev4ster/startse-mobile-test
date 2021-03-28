@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Alert } from 'react-native';
+import { Alert, KeyboardAvoidingView } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Formik } from 'formik';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -163,7 +163,11 @@ const Form = ({ formData, update }: FormProps) => {
       onSubmit={handlerSubmit}
     >
       {({ handleChange, handleSubmit, values, errors, handleReset }) => (
-        <>
+        <KeyboardAvoidingView
+          style={{ flex: 1 }}
+          keyboardVerticalOffset={90}
+          behavior="padding"
+        >
           <S.InputContainer>
             <S.InputRow>
               <S.InputLabel>Titulo</S.InputLabel>
@@ -282,7 +286,7 @@ const Form = ({ formData, update }: FormProps) => {
               </Button>
             </SafeAreaView>
           </S.ButtonsRow>
-        </>
+        </KeyboardAvoidingView>
       )}
     </Formik>
   );
