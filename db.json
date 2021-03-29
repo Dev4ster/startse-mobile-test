@@ -26,7 +26,31 @@
   "categories": [
     {
       "id": 1,
-      "name": "Computador"
+      "name": "Computadores"
+    },
+    {
+      "id": 2,
+      "name": "Celulares"
+    },
+    {
+      "id": 3,
+      "name": "Livros"
+    },
+    {
+      "id": 4,
+      "name": "Eletrodomésticos"
+    },
+    {
+      "id": 5,
+      "name": "Games"
+    },
+    {
+      "id": 6,
+      "name": "Videogames"
+    },
+    {
+      "id": 7,
+      "name": "Periféricos"
     }
   ]
 }

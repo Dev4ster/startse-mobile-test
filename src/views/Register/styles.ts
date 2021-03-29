@@ -23,6 +23,7 @@ export const Input = styled.TextInput`
     border: ${theme.colors.primary};
     padding: 10px;
     border-radius: ${theme.border.radius};
+    color: ${theme.colors.gray};
   `}
 `;
 
@@ -63,7 +64,7 @@ export const Selector = styled(RNPickerSelect)`
 `;
 
 export const ButtonsRow = styled.View`
-  padding-top: 20px;
+  padding: 20px 0;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;

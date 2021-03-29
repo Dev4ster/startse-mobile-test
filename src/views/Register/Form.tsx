@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Alert, KeyboardAvoidingView } from 'react-native';
+import { Alert, KeyboardAvoidingView, Platform } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Formik } from 'formik';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -179,8 +179,14 @@ const Form = ({ formData, update }: FormProps) => {
       }) => (
         <KeyboardAvoidingView
           style={{ flex: 1 }}
-          keyboardVerticalOffset={90}
-          behavior="padding"
+          keyboardVerticalOffset={Platform.select({
+            android: 125,
+            ios: 90,
+          })}
+          behavior={Platform.select({
+            android: 'height',
+            ios: 'padding',
+          })}
         >
           <S.InputContainer>
             <S.InputRow>
@@ -191,6 +197,7 @@ const Form = ({ formData, update }: FormProps) => {
                 placeholder={i18n.t('screen.register.inputs.title.placeholder')}
                 onChangeText={handleChange('title')}
                 value={values.title}
+                placeholderTextColor="#8F8F8F"
               />
               {errors.title && <S.ErrorLabel>{errors.title}</S.ErrorLabel>}
             </S.InputRow>
@@ -234,6 +241,7 @@ const Form = ({ formData, update }: FormProps) => {
                 onChangeText={handleChange('price')}
                 value={String(values.price)}
                 keyboardType="numeric"
+                placeholderTextColor="#8F8F8F"
               />
               {errors.price && <S.ErrorLabel>{errors.price}</S.ErrorLabel>}
             </S.InputRow>
@@ -246,6 +254,7 @@ const Form = ({ formData, update }: FormProps) => {
                 onChangeText={handleChange('tag')}
                 value={values.tag}
                 returnKeyType="send"
+                placeholderTextColor="#8F8F8F"
                 onSubmitEditing={() => {
                   if (handleAddTag(values.tag)) {
                     handleChange('tag')('');

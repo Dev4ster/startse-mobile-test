@@ -24,6 +24,9 @@ Nesse link tem todas as instruções para deixar o ambiente configurado: [https:
 4. Em um terminal execute o `yarn db` para iniciar a api.
 5. Em outro terminal execute `yarn ios` ou `yarn android`.
 
+Obs: caso rode no android será preciso configurar o TCP do avd.
+`adb reverse tcp:3000 tcp:3000`
+e mudar no .env `localhost` para `10.0.2.2`, assim o emulador vai entender que você quer acessar o ip local.
 # Api
 
 Configurei uma api simples utilizando o pacote `json-server`
