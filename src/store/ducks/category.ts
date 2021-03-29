@@ -58,6 +58,7 @@ export const reducer = (state = INITIAL_STATE, action: CategoriesActions) =>
       case FETCH_CATEGORIES_SUCCESS:
         draft.loading = false;
         draft.categories = action.payload.categories;
+        draft.error = null;
         return draft;
       case FETCH_CATEGORIES_FAILURE:
         draft.loading = false;

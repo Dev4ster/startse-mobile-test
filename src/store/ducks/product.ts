@@ -171,6 +171,7 @@ export const reducer = (state = INITIAL_STATE, action: ProductsActions) =>
       case FETCH_PRODUCTS_SUCCESS:
         draft.loading = false;
         draft.products = action.payload.products;
+        draft.error = null;
         return draft;
       case DELETE_PRODUCT_REQUEST:
         draft.loading = true;
@@ -184,6 +185,7 @@ export const reducer = (state = INITIAL_STATE, action: ProductsActions) =>
         draft.products = draft.products?.filter(
           product => product.id !== action.payload.productId,
         );
+        draft.error = null;
         return draft;
       case SUBMIT_PRODUCT_REQUEST:
         draft.loading = true;
@@ -195,6 +197,7 @@ export const reducer = (state = INITIAL_STATE, action: ProductsActions) =>
       case SUBMIT_PRODUCT_SUCCESS:
         draft.loading = false;
         draft.products?.push(action.payload.product);
+        draft.error = null;
         return draft;
       case UPDATE_PRODUCT_REQUEST:
         draft.loading = true;
@@ -209,6 +212,7 @@ export const reducer = (state = INITIAL_STATE, action: ProductsActions) =>
           }
           return product;
         });
+        draft.error = null;
         return draft;
       case UPDATE_PRODUCT_FAILURE:
         draft.loading = false;

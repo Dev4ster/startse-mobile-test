@@ -1,19 +1,22 @@
 import { useNavigation } from '@react-navigation/core';
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import Button from '~/components/Button/Button';
 import Header from '~/components/Header/Header';
 import ProductList from '~/components/ProductList/ProductList';
 import i18n from '~/i18n';
-import { actions } from '~/store/ducks/product';
+import { actions, ProductState } from '~/store/ducks/product';
 
 import * as S from './styles';
 
 const Home = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
+  const productState = useSelector<{ product: ProductState }>(
+    state => state.product,
+  ) as ProductState;
 
   const handleOpenRegisterPage = () => {
     navigation.navigate('Register');
@@ -28,18 +31,20 @@ const Home = () => {
       <S.ProductContainer>
         <ProductList />
       </S.ProductContainer>
-      <S.ButtonContainer>
-        <SafeAreaView edges={['bottom']} style={{ flex: 1 }}>
-          <Button
-            icon="add"
-            fullWidth
-            onPress={handleOpenRegisterPage}
-            iconSize={25}
-          >
-            {i18n.t('screen.home.registerProduct')}
-          </Button>
-        </SafeAreaView>
-      </S.ButtonContainer>
+      {!productState.error && (
+        <S.ButtonContainer>
+          <SafeAreaView edges={['bottom']} style={{ flex: 1 }}>
+            <Button
+              icon="add"
+              fullWidth
+              onPress={handleOpenRegisterPage}
+              iconSize={25}
+            >
+              {i18n.t('screen.home.registerProduct')}
+            </Button>
+          </SafeAreaView>
+        </S.ButtonContainer>
+      )}
     </S.Container>
   );
 };
