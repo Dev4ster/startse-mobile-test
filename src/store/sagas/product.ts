@@ -1,4 +1,6 @@
 import { call, put, takeLatest, all } from 'typed-redux-saga';
+
+import i18n from '~/i18n';
 import api from '~/services/api';
 import {
   IProduct,
@@ -28,7 +30,10 @@ function* updateProductRequest(action: UpdateProductRequest) {
     );
     yield put(
       actions.updateProductSuccess({
-        product: response.data,
+        product: {
+          ...response.data,
+          animatedOnRender: true,
+        },
       }),
     );
     if (action.payload?.onSuccess) {
@@ -36,7 +41,7 @@ function* updateProductRequest(action: UpdateProductRequest) {
     }
   } catch (e) {
     SnackBar({
-      text: 'Erro com nossos servidores',
+      text: i18n.t('default.serverErrorMessage'),
       type: 'error',
     });
     yield put(
@@ -52,12 +57,15 @@ function* createProductRequest(action: SubmitProductRequest) {
     const response = yield* call(createProduct, action.payload.data);
     yield put(
       actions.submitProductSuccess({
-        product: response.data,
+        product: {
+          ...response.data,
+          animatedOnRender: true,
+        },
       }),
     );
   } catch (e) {
     SnackBar({
-      text: 'Erro com nossos servidores',
+      text: i18n.t('default.serverErrorMessage'),
       type: 'error',
     });
     yield put(
@@ -78,7 +86,7 @@ function* deleteProductRequest(action: DeleteProductRequest) {
     );
   } catch (e) {
     SnackBar({
-      text: 'Erro com nossos servidores',
+      text: i18n.t('default.serverErrorMessage'),
       type: 'error',
     });
     yield put(
@@ -105,7 +113,7 @@ function* fetchProducts() {
     );
 
     SnackBar({
-      text: 'Erro com nossos servidores',
+      text: i18n.t('default.serverErrorMessage'),
       type: 'error',
     });
   }

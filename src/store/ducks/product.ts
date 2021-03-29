@@ -24,6 +24,7 @@ export interface IProduct {
   category: string;
   photoUrl: string;
   tags: string[];
+  animatedOnRender?: boolean;
 }
 
 export interface ProductState {

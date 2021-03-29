@@ -1,4 +1,6 @@
 import { call, put, takeLatest, all } from 'typed-redux-saga';
+
+import i18n from '~/i18n';
 import api from '~/services/api';
 import { ICategory, actions, types } from '~/store/ducks/category';
 import SnackBar from '~/utils/useSnackBar';
@@ -21,7 +23,7 @@ function* fetchCategories() {
     );
 
     SnackBar({
-      text: 'Erro com nossos servidores',
+      text: i18n.t('default.serverErrorMessage'),
       type: 'error',
     });
   }

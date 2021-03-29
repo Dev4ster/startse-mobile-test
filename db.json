@@ -1,10 +1,10 @@
 {
   "products": [
     {
+      "title": "Pc top da xuxa",
       "category": "Computador",
-      "price": 50.9,
+      "price": 19.9,
       "tag": "",
-      "title": "Pc top",
       "photoUrl": "https://picsum.photos/300/300",
       "tags": [
         "Teste"

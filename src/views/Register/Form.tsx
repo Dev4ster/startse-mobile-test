@@ -232,6 +232,7 @@ const Form = ({ formData, update }: FormProps) => {
                 placeholder={i18n.t('screen.register.inputs.price.placeholder')}
                 onChangeText={handleChange('price')}
                 value={String(values.price)}
+                keyboardType="numeric"
               />
               {errors.price && <S.ErrorLabel>{errors.price}</S.ErrorLabel>}
             </S.InputRow>
