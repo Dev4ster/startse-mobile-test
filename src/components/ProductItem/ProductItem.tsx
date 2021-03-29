@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef } from 'react';
-
 import { Animated } from 'react-native';
+
 import Button from '~/components/Button/Button';
 import Logo from '~/assets/image/logo.svg';
 import * as S from './styles';
@@ -19,8 +19,10 @@ export type ProductItemProps = {
   animatedOnRender?: boolean;
 };
 
+const INITIAL_ANIMATION_VALUE = 1000;
+const FINISH_ANIMATION_VALUE = 0;
+
 const ProductItem = ({
-  id,
   category,
   title,
   photoUrl,
@@ -49,8 +51,8 @@ const ProductItem = ({
 
   useEffect(() => {
     if (animatedOnRender) {
-      handleAnimate(1000).start(() => {
-        handleAnimate(0).start();
+      handleAnimate(INITIAL_ANIMATION_VALUE).start(() => {
+        handleAnimate(FINISH_ANIMATION_VALUE).start();
       });
     }
   }, [handleAnimate, animatedOnRender]);

@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleProp, TextStyle, ViewStyle } from 'react-native';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+
 import * as S from './styles';
 
 type ButtonProps = {

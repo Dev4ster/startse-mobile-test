@@ -3,9 +3,14 @@ export default {
     home: {
       registerProduct: 'Cadastrar',
       list: {
-        emptyState: {
+        errorState: {
           title: 'Error',
           message: 'Não foi possível atender sua solicitação tente novamente.',
+        },
+        emptyState: {
+          title: 'Sem produtos',
+          message: 'Não temos produtos na lista.',
+          actionLabel: 'Criar um produto',
         },
       },
     },

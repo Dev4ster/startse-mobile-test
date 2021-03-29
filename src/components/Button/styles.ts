@@ -26,7 +26,7 @@ export const Wrapper = styled.TouchableOpacity<ButtonProps>`
     align-items: center;
     flex: 1;
     ${!!fullWidth && ButtonModifiers.fullWidth};
-  `}
+  `};
 `;
 
 export const Text = styled.Text<ButtonProps>`
@@ -34,5 +34,5 @@ export const Text = styled.Text<ButtonProps>`
     margin-left: 5px;
     ${!!fullWidth && ButtonModifiers.fullWidthText(theme)};
     color: ${theme.colors[color!]};
-  `}
+  `};
 `;

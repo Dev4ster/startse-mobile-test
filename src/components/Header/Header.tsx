@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef } from 'react';
 import { Animated } from 'react-native';
-
 import { Easing } from 'react-native-reanimated';
+
 import * as S from './styles';
 import Logo from '~/assets/image/logo.svg';
 

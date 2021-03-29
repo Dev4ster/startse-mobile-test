@@ -1,7 +1,7 @@
 {
   "products": [
     {
-      "title": "Pc top da xuxa",
+      "title": "Pc Gamer Usado",
       "category": "Computador",
       "price": 19.9,
       "tag": "",
@@ -12,39 +12,21 @@
       "id": 1
     },
     {
-      "title": "Produto",
+      "title": "Pc Gamer Novo",
       "category": "Computador",
-      "price": 99.9,
+      "price": 1900.9,
       "tag": "",
       "photoUrl": "https://picsum.photos/300/300",
       "tags": [
         "Teste"
       ],
       "id": 2
-    },
-    {
-      "title": "Teste",
-      "category": "Computador",
-      "price": 99.9,
-      "tag": "",
-      "photoUrl": "https://picsum.photos/300/300",
-      "tags": [
-        "Teste",
-        "Tese"
-      ],
-      "id": 5
     }
   ],
   "categories": [
     {
       "id": 1,
       "name": "Computador"
-    }
-  ],
-  "tags": [
-    {
-      "id": 1,
-      "name": "eletrônicos"
     }
   ]
 }

@@ -63,6 +63,10 @@ function* createProductRequest(action: SubmitProductRequest) {
         },
       }),
     );
+
+    if (action.payload.onSuccess) {
+      action.payload.onSuccess();
+    }
   } catch (e) {
     SnackBar({
       text: i18n.t('default.serverErrorMessage'),

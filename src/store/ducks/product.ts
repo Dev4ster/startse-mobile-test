@@ -55,6 +55,7 @@ export interface DeleteProductFailurePayload {
 
 export interface SubmitProductRequestPayload {
   data: Omit<IProduct, 'id'>;
+  onSuccess: () => void;
 }
 
 export interface SubmitProductSuccessPayload {

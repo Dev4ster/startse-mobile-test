@@ -39,6 +39,10 @@ const ProductList = () => {
     [navigation],
   );
 
+  const handleCreateNewProducts = useCallback(() => {
+    navigation.navigate('Register');
+  }, [navigation]);
+
   const renderList = useCallback(() => {
     if (productState.products?.length) {
       return (
@@ -63,9 +67,21 @@ const ProductList = () => {
     if (productState.error) {
       return (
         <EmptyState
+          title={i18n.t('screen.home.list.errorState.title')}
+          message={i18n.t('screen.home.list.errorState.message')}
+          retry={() => dispatch(actions.fetchProductsRequest())}
+        />
+      );
+    }
+
+    if (!productState.error && !productState.products?.length) {
+      return (
+        <EmptyState
           title={i18n.t('screen.home.list.emptyState.title')}
           message={i18n.t('screen.home.list.emptyState.message')}
-          retry={() => dispatch(actions.fetchProductsRequest())}
+          buttonLabel={i18n.t('screen.home.list.emptyState.actionLabel')}
+          buttonIcon="add"
+          retry={handleCreateNewProducts}
         />
       );
     }

@@ -93,6 +93,7 @@ const Form = ({ formData, update }: FormProps) => {
             photoUrl: 'https://picsum.photos/300/300',
             tags,
           },
+          onSuccess: handleGoBack,
         }),
       );
     }

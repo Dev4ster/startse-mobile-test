@@ -7,12 +7,12 @@ export const Wrapper = styled(SafeAreaView)`
     justify-content: center;
     align-items: center;
     background-color: ${theme.colors.primary};
-  `}
+  `};
 `;
 
 export const Text = styled.Text`
   ${({ theme }) => css`
     font-size: ${theme.font.sizes.xlarge};
     font-weight: bold;
-  `}
+  `};
 `;
