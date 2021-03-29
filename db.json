@@ -1,0 +1,32 @@
+{
+  "products": [
+    {
+      "title": "Pc Gamer Usado",
+      "category": "Computador",
+      "price": 19.9,
+      "tag": "",
+      "photoUrl": "https://picsum.photos/300/300",
+      "tags": [
+        "Teste"
+      ],
+      "id": 1
+    },
+    {
+      "title": "Pc Gamer Novo",
+      "category": "Computador",
+      "price": 1900.9,
+      "tag": "",
+      "photoUrl": "https://picsum.photos/300/300",
+      "tags": [
+        "Teste"
+      ],
+      "id": 2
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Computador"
+    }
+  ]
+}
